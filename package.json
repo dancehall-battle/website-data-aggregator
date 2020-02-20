@@ -1,0 +1,19 @@
+{
+  "name": "website-data-aggregator",
+  "version": "0.0.1",
+  "description": "This tool aggregates the data that is used by the website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Pieter Heyvaert (https://pieterheyvaert.com)",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.9.0",
+    "fs-extra": "^8.1.0",
+    "graphql-ld": "^1.0.1",
+    "graphql-ld-comunica": "^1.0.1",
+    "recursive-json-key-transform": "^0.2.0"
+  }
+}

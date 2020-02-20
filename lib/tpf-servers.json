@@ -1,0 +1,10 @@
+{
+  "live": [
+    { "type": "hypermedia", "value": "https://data.dancehallbattle.org/data" },
+    { "type": "hypermedia", "value": "https://data.dancehallbattle.org/rankings" }
+  ],
+  "dev": [
+    { "type": "hypermedia", "value": "https://data.dev.dancehallbattle.org/data" },
+    { "type": "hypermedia", "value": "https://data.dev.dancehallbattle.org/rankings" }
+  ]
+}
