@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "bin": {
+    "website-data-aggregator": "bin/cli.js"
+  },
   "author": "Pieter Heyvaert (https://pieterheyvaert.com)",
   "license": "MIT",
   "dependencies": {
