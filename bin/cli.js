@@ -13,6 +13,7 @@ async function main() {
   program
     .requiredOption('-d, --data <data>', 'Data to aggregate', validateDataOption)
     .option('-o, --output <path>', 'File to write output to' , makeAbsolute)
+    .option('-c, --cache <path>', 'Folder where cached files are stored' , makeAbsolute)
     .option('-v, --verbose', 'Show debug info');
 
   program.parse(process.argv);
@@ -28,16 +29,71 @@ async function main() {
   } else if (program.data === 'countries') {
     result = await getCountries();
   } else if (program.data === 'country-to-battles') {
-    const {perYear} = await getBattles();
-    result = await getCountryToBattles(perYear);
+    let battles = null;
+
+    if (program.cache) {
+      battles = await getCachedFile(program.cache, 'battles.json', program.verbose);
+    }
+
+    if (!battles) {
+      battles = await getBattles();
+    }
+
+    result = await getCountryToBattles(battles.perYear);
   } else if (program.data === 'country-to-events') {
-    const events = await getEvents();
+    let events = null;
+
+    if (program.cache) {
+      events = await getCachedFile(program.cache, 'events.json', program.verbose);
+    }
+
+    if (!events) {
+      events = await getEvents();
+    }
+
     result = await getCountryToEvents(events);
   } else if (program.data === 'country-to-jsonld') {
-    const {originalQueryResults, perYear} = await getBattles();
-    const countryToBattles = await getCountryToBattles(perYear);
-    const events = await getEvents();
-    const countryToEvents = await getCountryToEvents(events);
+    let battles = null;
+
+    if (program.cache) {
+      battles = await getCachedFile(program.cache, 'battles.json', program.verbose);
+    }
+
+    if (!battles) {
+      battles = await getBattles();
+    }
+
+    const {originalQueryResults, perYear} = battles;
+
+    let events = null;
+
+    if (program.cache) {
+      events = await getCachedFile(program.cache, 'events.json', program.verbose);
+    }
+
+    if (!events) {
+      events = await getEvents();
+    }
+
+    let countryToBattles = null;
+
+    if (program.cache) {
+      countryToBattles = await getCachedFile(program.cache, 'countryToBattles.json', program.verbose);
+    }
+
+    if (!countryToBattles) {
+      countryToBattles = await getCountryToBattles(perYear);
+    }
+
+    let countryToEvents = null;
+
+    if (program.cache) {
+      countryToEvents = await getCachedFile(program.cache, 'countryToEvents.json', program.verbose);
+    }
+
+    if (!countryToBattles) {
+      countryToEvents = await getCountryToEvents(events);
+    }
 
     result = await getCountryToJSONLD(originalQueryResults, countryToBattles, countryToEvents);
   } else if (program.data === 'dancer-list') {
@@ -85,4 +141,28 @@ function makeAbsolute(filePath) {
   }
 
   return filePath;
+}
+
+async function getCachedFile(dir, fileName, verbose) {
+  const filePath = path.join(dir, fileName);
+
+  if (verbose) {
+    console.error(`Looking for ${fileName} in cache folder...`);
+  }
+
+  const exists = await fs.pathExists(filePath);
+
+  if (exists) {
+    if (verbose) {
+      console.error(`File ${fileName} found in cache folder.`);
+    }
+
+    return await fs.readJson(filePath);
+  } else {
+    if (verbose) {
+      console.error(`File ${fileName} not found in cache folder.`);
+    }
+
+    return null;
+  }
 }
