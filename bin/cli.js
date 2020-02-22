@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const {getBattles, getUpcoming, getCountries, getCountryToBattles,
-  getCountryToEvents, getCountryToJSONLD, getEvents, getDancerList} = require('../index');
+  getCountryToEvents, getCountryToJSONLD, getEvents, getDancerList, getDancers} = require('../index');
 const path = require('path');
 const fs = require('fs-extra');
 
@@ -41,6 +41,8 @@ async function main() {
     result = await getCountryToJSONLD(originalQueryResults, countryToBattles, countryToEvents);
   } else if (program.data === 'dancer-list') {
     result = await getDancerList();
+  } else if (program.data === 'dancers') {
+    result = await getDancers();
   }
 
   if (program.output) {
@@ -62,7 +64,7 @@ async function main() {
 function validateDataOption(data) {
   const validData = ['battles', 'events', 'upcoming',
     'countries', 'country-to-battles', 'country-to-events',
-    'country-to-jsonld', 'dancer-list'];
+    'country-to-jsonld', 'dancer-list', 'dancers'];
   data = data.trim();
 
   if (validData.includes(data)) {
