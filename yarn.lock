@@ -1244,7 +1244,7 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-graphql-ld-comunica@^1.0.1:
+graphql-ld-comunica@^1.0.0, graphql-ld-comunica@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graphql-ld-comunica/-/graphql-ld-comunica-1.0.1.tgz#e6217a64e6f2ffffb61e5d429f2eb41ae0236e38"
   integrity sha512-eMfJnH6xrwBnj4cX4zIchCYY/3dLLGpWbP6LrZsd1rEDJZeqXKO7bTjhveO3o+gUrub+6Ko1hlyqUnchgob/jQ==
@@ -1962,6 +1962,14 @@ uritemplate@0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/uritemplate/-/uritemplate-0.3.4.tgz#05d0a853ffbc8b0f49aa3d4d2ad777b0d1ee070c"
   integrity sha1-BdCoU/+8iw9Jqj1NKtd3sNHuBww=
+
+"utils@https://github.com/dancehall-battle/utils-js":
+  version "0.0.1"
+  resolved "https://github.com/dancehall-battle/utils-js#a1ed35d7782f41c8f09e1ea91c3ae9b382e7496b"
+  dependencies:
+    fs-extra "^8.1.0"
+    graphql-ld "^1.0.1"
+    graphql-ld-comunica "^1.0.0"
 
 uuid@^3.3.2:
   version "3.4.0"
