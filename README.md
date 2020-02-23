@@ -1,6 +1,6 @@
 # Website data aggregator
 
-This library and CLI tool that aggregates the data needed for the website.
+This library and CLI tool aggregates the data needed for the website.
 
 ## Usage
 
