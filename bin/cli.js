@@ -71,7 +71,7 @@ async function main() {
       }
     });
 
-    result = await getCountryToEvents(upcomingEvents);
+    result = await getCountryToEvents(upcomingEvents, true);
   } else if (program.data === 'country-to-jsonld') {
     let battles = null;
 
