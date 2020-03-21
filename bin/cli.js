@@ -52,6 +52,26 @@ async function main() {
     }
 
     result = await getCountryToEvents(events);
+  } else if (program.data === 'country-to-upcoming') {
+    let upcomingEvents = null;
+
+    if (program.cache) {
+      upcomingEvents = await getCachedFile(program.cache, 'upcoming.json', program.verbose);
+    }
+
+    if (!upcomingEvents) {
+      upcomingEvents = await getUpcoming();
+    }
+
+    upcomingEvents = upcomingEvents.data;
+
+    upcomingEvents.forEach(event => {
+      event.location = {
+        code: event.location
+      }
+    });
+
+    result = await getCountryToEvents(upcomingEvents, true);
   } else if (program.data === 'country-to-jsonld') {
     let battles = null;
 
@@ -124,7 +144,7 @@ function validateDataOption(data) {
   const validData = ['battles', 'events', 'upcoming',
     'countries', 'country-to-battles', 'country-to-events',
     'country-to-jsonld', 'dancer-list', 'dancers',
-    'rankings'];
+    'rankings', 'country-to-upcoming'];
   data = data.trim();
 
   if (validData.includes(data)) {
