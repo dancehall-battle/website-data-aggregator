@@ -63,7 +63,15 @@ async function main() {
       upcomingEvents = await getUpcoming();
     }
 
-    result = await getCountryToEvents(upcomingEvents.data);
+    upcomingEvents = upcomingEvents.data;
+
+    upcomingEvents.forEach(event => {
+      event.location = {
+        code: event.location
+      }
+    });
+
+    result = await getCountryToEvents(upcomingEvents);
   } else if (program.data === 'country-to-jsonld') {
     let battles = null;
 
