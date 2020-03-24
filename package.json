@@ -1,6 +1,6 @@
 {
   "name": "website-data-aggregator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This tool aggregates the data that is used by the website.",
   "main": "index.js",
   "scripts": {
