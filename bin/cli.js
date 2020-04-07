@@ -119,7 +119,17 @@ async function main() {
   } else if (program.data === 'dancer-list') {
     result = await getDancerList();
   } else if (program.data === 'dancers') {
-    result = await getDancers();
+    let rankings = null;
+
+    if (program.cache) {
+      rankings = await getCachedFile(program.cache, 'rankings.json', program.verbose);
+    }
+
+    if (!rankings) {
+      rankings = await getRankings();
+    }
+
+    result = await getDancers(rankings);
   } else if (program.data === 'rankings') {
     result = await getRankings();
   }
