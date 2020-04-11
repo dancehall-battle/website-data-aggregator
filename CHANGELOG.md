@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- Add ranks to dancers (see [issue 5](https://github.com/dancehall-battle/website-data-aggregator/issues/5))
+
 ## [1.1.0] - 2020-03-24
 
 ### Added
 - Generate countryToUpcoming.json (see [issue 3](https://github.com/dancehall-battle/website-data-aggregator/issues/3))
-- Add ranks to dancers (see [issue 5](https://github.com/dancehall-battle/website-data-aggregator/issues/5))
 
 ## 1.0.0 - 2020-03-16
 
