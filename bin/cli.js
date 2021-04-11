@@ -13,12 +13,18 @@ async function main() {
   program
     .requiredOption('-d, --data <data>', 'Data to aggregate', validateDataOption)
     .option('-o, --output <path>', 'File to write output to' , makeAbsolute)
+    .option('-p, --print-per-object', 'Print per object (cannot be combined with -o, --output)')
     .option('-c, --cache <path>', 'Folder where cached files are stored' , makeAbsolute)
     .option('-v, --verbose', 'Show debug info');
 
   program.parse(process.argv);
 
   let result;
+
+  if (program.output && program.printPerObject) {
+    console.error('-p, --print-per-object and -o, --output cannot be combined.');
+    process.exit(1);
+  }
 
   if (program.data === 'battles') {
     result = await getBattles();
@@ -134,14 +140,16 @@ async function main() {
     result = await getRankings();
   }
 
-  if (program.output) {
-    if (program.verbose) {
-      console.error(`Writing data to ${program.output}...`);
-    }
+  if (!program.printPerObject) {
+    if (program.output) {
+      if (program.verbose) {
+        console.error(`Writing data to ${program.output}...`);
+      }
 
-    fs.writeJson(program.output, result);
-  } else {
-    console.log(result);
+      fs.writeJson(program.output, result);
+    } else {
+      console.log(result);
+    }
   }
 
   if (program.verbose) {
