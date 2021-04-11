@@ -135,7 +135,7 @@ async function main() {
       rankings = await getRankings();
     }
 
-    result = await getDancers(rankings);
+    result = await getDancers(rankings, program.printPerObject);
   } else if (program.data === 'rankings') {
     result = await getRankings();
   }
