@@ -132,7 +132,9 @@ async function main() {
     }
 
     if (!rankings) {
+      console.log('Getting rankings...');
       rankings = await getRankings();
+      console.log('Getting rankings done.');
     }
 
     result = await getDancers(rankings, {printPerObject: program.printPerObject});

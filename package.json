@@ -17,8 +17,8 @@
     "country-list": "^2.2.0",
     "date-fns": "^2.9.0",
     "fs-extra": "^8.1.0",
-    "graphql-ld": "^1.0.1",
-    "graphql-ld-comunica": "^1.0.1",
+    "graphql-ld": "^1.4.0",
+    "graphql-ld-comunica": "^1.2.1",
     "recursive-json-key-transform": "^0.2.0",
     "utils": "https://github.com/dancehall-battle/utils-js"
   }
