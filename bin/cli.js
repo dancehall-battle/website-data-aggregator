@@ -3,7 +3,7 @@
 const program = require('commander');
 const {getBattles, getUpcoming, getCountries, getCountryToBattles,
   getCountryToEvents, getCountryToJSONLD, getEvents, getDancerList,
-  getDancers, getRankings} = require('../index');
+  getDancers, getRankings, getBattleToJudges} = require('../index');
 const path = require('path');
 const fs = require('fs-extra');
 
@@ -140,6 +140,8 @@ async function main() {
     result = await getDancers(rankings, {printPerObject: program.printPerObject});
   } else if (program.data === 'rankings') {
     result = await getRankings();
+  } else if (program.data === 'battle-to-judges') {
+    result = await getBattleToJudges();
   }
 
   if (!program.printPerObject) {

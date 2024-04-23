@@ -8,6 +8,7 @@ const getCountryToJSONLD = require('./lib/country-to-jsonld');
 const getDancerList = require('./lib/dancer-list');
 const getDancers = require('./lib/dancers');
 const getRankings = require('./lib/rankings');
+const getBattleToJudges = require('./lib/battle-to-judges');
 
 module.exports = {
   getBattles,
@@ -19,5 +20,6 @@ module.exports = {
   getCountryToJSONLD,
   getDancerList,
   getDancers,
-  getRankings
+  getRankings,
+  getBattleToJudges
 };
