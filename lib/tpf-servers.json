@@ -1,7 +1,7 @@
 {
   "live": [
-    { "type": "hypermedia", "value": "http://localhost:5000/data" },
-    { "type": "hypermedia", "value": "http://localhost:5000/rankings" }
+    { "type": "hypermedia", "value": "http://localhost:8080/data" },
+    { "type": "hypermedia", "value": "http://localhost:8080/rankings" }
   ],
   "dev": [
     { "type": "hypermedia", "value": "https://data.dev.dancehallbattle.org/data" },

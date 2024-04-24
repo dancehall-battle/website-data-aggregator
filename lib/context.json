@@ -21,6 +21,7 @@
     "Event": "dhb:DanceEvent",
     "Battle": "dhb:DanceBattle",
     "Dancer": "dhb:Dancer",
-    "instagram": "dhb:instagram"
+    "instagram": "dhb:instagram",
+    "hasJudge": "dhb:hasJudge"
   }
 }

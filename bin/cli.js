@@ -166,7 +166,7 @@ function validateDataOption(data) {
   const validData = ['battles', 'events', 'upcoming',
     'countries', 'country-to-battles', 'country-to-events',
     'country-to-jsonld', 'dancer-list', 'dancers',
-    'rankings', 'country-to-upcoming'];
+    'rankings', 'country-to-upcoming', 'battle-to-judges'];
   data = data.trim();
 
   if (validData.includes(data)) {
