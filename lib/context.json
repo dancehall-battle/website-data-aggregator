@@ -22,6 +22,7 @@
     "Battle": "dhb:DanceBattle",
     "Dancer": "dhb:Dancer",
     "instagram": "dhb:instagram",
-    "hasJudge": "dhb:hasJudge"
+    "hasJudge": "dhb:hasJudge",
+    "judges": {"@reverse": "dhb:hasJudge"}
   }
 }

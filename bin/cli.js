@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const {getBattles, getUpcoming, getCountries, getCountryToBattles,
+const {
+  getBattles, getUpcoming, getCountries, getCountryToBattles,
   getCountryToEvents, getCountryToJSONLD, getEvents, getDancerList,
-  getDancers, getRankings, getBattleToJudges} = require('../index');
+  getDancers, getRankings, getBattleToJudges, getJudgeList
+} = require('../index');
 const path = require('path');
 const fs = require('fs-extra');
 
@@ -12,9 +14,9 @@ main();
 async function main() {
   program
     .requiredOption('-d, --data <data>', 'Data to aggregate', validateDataOption)
-    .option('-o, --output <path>', 'File to write output to' , makeAbsolute)
+    .option('-o, --output <path>', 'File to write output to', makeAbsolute)
     .option('-p, --print-per-object', 'Print per object (cannot be combined with -o, --output)')
-    .option('-c, --cache <path>', 'Folder where cached files are stored' , makeAbsolute)
+    .option('-c, --cache <path>', 'Folder where cached files are stored', makeAbsolute)
     .option('-v, --verbose', 'Show debug info');
 
   program.parse(process.argv);
@@ -124,6 +126,8 @@ async function main() {
     result = await getCountryToJSONLD(originalQueryResults, countryToBattles, countryToEvents);
   } else if (program.data === 'dancer-list') {
     result = await getDancerList();
+  } else if (program.data === 'judge-list') {
+    result = await getJudgeList();
   } else if (program.data === 'dancers') {
     let rankings = null;
 
@@ -166,7 +170,7 @@ function validateDataOption(data) {
   const validData = ['battles', 'events', 'upcoming',
     'countries', 'country-to-battles', 'country-to-events',
     'country-to-jsonld', 'dancer-list', 'dancers',
-    'rankings', 'country-to-upcoming', 'battle-to-judges'];
+    'rankings', 'country-to-upcoming', 'battle-to-judges', 'judge-list'];
   data = data.trim();
 
   if (validData.includes(data)) {
@@ -178,7 +182,7 @@ function validateDataOption(data) {
 }
 
 function makeAbsolute(filePath) {
-  if(! path.isAbsolute(filePath)) {
+  if (!path.isAbsolute(filePath)) {
     filePath = path.join(process.cwd(), filePath);
   }
 
